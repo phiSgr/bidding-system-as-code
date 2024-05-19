@@ -1,0 +1,38 @@
+name: Release project
+
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: sonatype publish
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - run: pnpm install --frozen-lockfile
+        working-directory: viewer
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '8'
+      - run: ./gradlew clean --no-daemon -PjextractPath=jextract-22/
+        working-directory: dsl
+      - run: |
+          # https://gist.github.com/sualeh/ae78dc16123899d7942bc38baba5203c
+          cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
+      - run: |
+          ./gradlew publish --no-daemon -PjextractPath=jextract-22/ -PossrhUsername=${{secrets.OSSRH_USERNAME}} -PossrhPassword=${{secrets.OSSRH_PASSWORD}} -Psigning.gnupg.passphrase=${{secrets.SIGNING_PASSWORD}} -Psigning.gnupg.executable=gpg &&
+            curl -X POST -H "Content-Type: application/json" -u "${{secrets.OSSRH_USERNAME}}:${{secrets.OSSRH_PASSWORD}}" https://ossrh-staging-api.central.sonatype.com/service/local/staging/bulk/close --data '{"data":{"stagedRepositoryIds":["com.github.phisgr--default-repository"], "description":"", "autoDropAfterRelease":true}}'
+        working-directory: dsl

@@ -1,0 +1,27 @@
+.v-btn.v-size--x-small {
+  margin-left: 4px;
+}
+.hidden-bids {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  z-index: 1;
+  top: 32px;
+  left: 48px;
+}
+.v-card__text.explanation {
+  padding-top: 0;
+}
+.v-card__text > div > p:last-child {
+  margin-bottom: 0;
+}
+.explanation > div > p {
+  margin-bottom: 8px;
+}
+.with-tooltip:hover .v-tooltip__content {
+  opacity: 0.9;
+}
+
+.v-tooltip__content {
+  transition: opacity 0.5s;
+}

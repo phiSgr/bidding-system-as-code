@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--
+      The viewer software embedded in this document is licensed under AGPLv3
+      Redistribution under restrictive terms may create compliance complexities
+      best avoided through open distribution.
+
+      This document contains/generates style sheets and HTML elements from
+      the build output of the previous incarnation of the viewer, which uses Vuetify.
+      The MIT license of Vuetify can be found here:
+      https://github.com/vuetifyjs/vuetify/blob/3ed1fb34fe1890433c5912167851d032a9af1a64/LICENSE.md
+
+      This document uses the open source libraries with the following licenses:
+      @mdi/js: Apache 2.0 https://github.com/Templarian/MaterialDesign-JS/blob/47d99c7b945bd5c080d9bc9acb4d1c6bc38ef06c/LICENSE
+      jsx-dom: BSD-3-Clause https://github.com/alex-kinokon/jsx-dom/blob/81ce3056e5658a55cbeb4b28a012229226b69430/LICENSE
+      marked: MIT https://github.com/markedjs/marked/blob/c6a98ea66c36d12255543e2fabd8f8236dbc5276/LICENSE.md
+    -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="https://phisgr.github.io/bridge/favicon.ico" />
+    <title>bridge-system-viewer</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+    />
+  </head>
+
+  <body>
+    <noscript
+      ><strong
+        >We're sorry but bridge-system-viewer doesn't work properly without
+        JavaScript enabled. Please enable it to continue.</strong
+      ></noscript
+    >
+    <div
+      data-app="true"
+      class="v-application v-application--is-ltr theme--light"
+      id="app"
+    >
+      <div
+        role="document"
+        class="v-dialog__content"
+        style="z-index: 1001"
+        id="fullSeqDialogContent"
+        tabindex="0"
+      >
+        <div
+          class="v-dialog"
+          style="
+            transform-origin: center center 0px;
+            max-width: 80%;
+            display: none;
+          "
+          id="fullSeqDialog"
+        >
+          <div class="v-card v-sheet theme--light">
+            <div class="v-card__title headline">Full Sequence</div>
+            <div class="container">
+              <div
+                id="fullSeqList"
+                role="list"
+                class="v-list v-sheet v-sheet--tile theme--light v-list--dense"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="v-application--wrap">
+        <header
+          class="v-sheet v-sheet--tile theme--dark v-toolbar v-app-bar v-app-bar--fixed primary"
+          style="
+            height: 64px;
+            margin-top: 0px;
+            transform: translateY(0px);
+            left: 0px;
+            right: 0px;
+          "
+          data-booted="true"
+        >
+          <div class="v-toolbar__content" style="height: 64px">
+            <span class="headline" id="nameSpan"></span>
+            <div class="spacer"></div>
+            <button
+              type="button"
+              class="v-btn v-btn--contained theme--dark v-size--default accent"
+              id="collapseAllBtn"
+            >
+              <span class="v-btn__content">
+                <span class="mr-2">Collapse all</span>
+                <span id="collapseAll"></span>
+              </span>
+            </button>
+            <button
+              type="button"
+              class="v-btn v-btn--contained theme--dark v-size--default"
+              style="margin-left: 10px; background: #4caf50"
+              id="expandAllBtn"
+            >
+              <span class="v-btn__content">
+                <span class="mr-2">Expand all</span>
+                <span id="expandAll"></span>
+              </span>
+            </button>
+          </div>
+        </header>
+        <main
+          class="v-content"
+          style="padding: 64px 0px 0px"
+          data-booted="true"
+        >
+          <div class="v-content__wrap">
+            <div
+              class="v-card v-sheet theme--light"
+              style="width: 80%; margin: 12px auto auto"
+            >
+              <div class="v-card__text">
+                <div id="description"></div>
+              </div>
+            </div>
+            <div class="container">
+              <div
+                class="v-treeview v-treeview--hoverable v-treeview--dense theme--light"
+              ></div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
