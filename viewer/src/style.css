@@ -25,3 +25,21 @@
 .v-tooltip__content {
   transition: opacity 0.5s;
 }
+
+.v-treeview-node__level {
+  flex-shrink: 0;
+}
+.v-treeview-node {
+  overflow: hidden;
+}
+.v-treeview-node__root {
+  min-width: 0;
+}
+@media (max-width: 600px) {
+  .v-treeview-node__level {
+    width: 10px !important;
+  }
+  .btn-label {
+    display: none;
+  }
+}
