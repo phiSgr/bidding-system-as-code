@@ -3,7 +3,7 @@ import java.lang.System.getProperty
 plugins {
     kotlin("jvm") version "2.2.0"
 
-    id("org.jetbrains.dokka") version "2.0.0"
+    id("org.jetbrains.dokka") version "2.2.0"
     id("maven-publish")
     id("signing")
 }
@@ -20,13 +20,14 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-core:2.17.1")
 }
 
-task<JavaExec>("runTestMainClass") { // test equivalent for application
+// test equivalent for application
+tasks.register<JavaExec>("runTestMainClass") {
     dependsOn("testClasses")
     classpath = sourceSets["test"].runtimeClasspath
     mainClass.set(getProperty("mainClass"))
 }
 
-task<Exec>("buildHtml") {
+tasks.register<Exec>("buildHtml") {
     inputs.dir("../viewer/src")
     outputs.file("../viewer/dist/index.html")
 
@@ -78,7 +79,7 @@ signing {
 }
 
 tasks.named<Jar>("javadocJar") {
-    from(tasks.named("dokkaHtml"))
+    from(tasks.named("dokkaGenerateHtml"))
 }
 tasks.withType<Javadoc>().all { enabled = false }
 

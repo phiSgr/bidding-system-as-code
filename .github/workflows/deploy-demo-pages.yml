@@ -1,0 +1,55 @@
+name: Deploy HTML to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-demo-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - run: pnpm install --frozen-lockfile
+        working-directory: viewer
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '8'
+      - run: |
+          ./gradlew clean --no-daemon &&
+            ./gradlew runTestMainClass -DmainClass=fantunes.FantunesKt --no-daemon &&
+            ./gradlew runTestMainClass -DmainClass=heeman.HeemanKt --no-daemon &&
+            ./gradlew runTestMainClass -DmainClass=lebensohl.LebKt --no-daemon
+        working-directory: dsl
+      - name: Stage for Pages
+        run: |
+          mkdir -p deploy/fantunes deploy/heeman/ deploy/xfer-leb/
+          cp dsl/build/fantunes.html deploy/fantunes/index.html
+          cp dsl/build/heeman.html deploy/heeman/index.html
+          cp dsl/build/leb.html deploy/xfer-leb/index.html
+      - name: Push to phisgr.github.io
+        uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f
+        with:
+          folder: deploy
+          token: ${{ secrets.GH_PAGES_DEPLOY_TOKEN }}
+          repository-name: phisgr/phisgr.github.io
+          branch: master
+          target-folder: bridge/
+          commit-message: "bsac demo"
+          clean: false
