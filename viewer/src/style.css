@@ -30,7 +30,7 @@
   flex-shrink: 0;
 }
 .v-treeview-node {
-  overflow: hidden;
+  overflow-x: clip;
 }
 .v-treeview-node__root {
   min-width: 0;

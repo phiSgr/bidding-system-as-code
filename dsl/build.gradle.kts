@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.github.phisgr"
-version = "0.1.0"
+version = "0.2.0"
 
 repositories {
     mavenCentral()
@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation("com.fasterxml.jackson.core:jackson-core:2.17.1")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.21.2")
 }
 
 // test equivalent for application
