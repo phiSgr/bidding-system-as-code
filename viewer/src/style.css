@@ -42,4 +42,11 @@
   .btn-label {
     display: none;
   }
+  .v-treeview-node__toggle {
+    width: 10px !important;
+    overflow: hidden;
+  }
+  .v-treeview-node__toggle svg {
+    margin: -7px;
+  }
 }

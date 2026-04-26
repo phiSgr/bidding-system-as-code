@@ -76,7 +76,7 @@ but they don't help with readability at all.
 
 ## Developing your System
 
-Add the `"com.github.phisgr:bidding-system-as-code:0.0.0"` dependency with your favourite build tool.
+Add the `"com.github.phisgr:bidding-system-as-code:0.2.0"` dependency with your favourite build tool.
 
 To build an all-in-one HTML file:
 

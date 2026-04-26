@@ -188,5 +188,5 @@ fun main() {
 
     val file = File("build", "heeman.html")
     system.writeHtml(file)
-    println("Written HTML to ${file.absolutePath}")
+    println("Written HTML to ${file.toPath().toUri()}")
 }

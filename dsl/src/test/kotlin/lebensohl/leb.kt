@@ -58,6 +58,6 @@ fun main() {
 
     val file = File("build", "leb.html")
     system.writeHtml(file)
-    println("Written HTML to ${file.absolutePath}")
+    println("Written HTML to ${file.toPath().toUri()}")
 }
 

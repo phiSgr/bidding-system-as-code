@@ -52,5 +52,5 @@ fun main() {
     }
     val file = File("build", "fantunes.html")
     system.writeHtml(file)
-    println("Written HTML to ${file.absolutePath}")
+    println("Written HTML to ${file.toPath().toUri()}")
 }
