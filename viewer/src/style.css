@@ -8,6 +8,7 @@
   z-index: 1;
   top: 32px;
   left: 48px;
+  white-space: nowrap;
 }
 .v-card__text.explanation {
   padding-top: 0;
@@ -48,5 +49,6 @@
   }
   .v-treeview-node__toggle svg {
     margin: -7px;
+    transform: scale(0.75, 0.75);
   }
 }
