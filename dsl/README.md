@@ -92,3 +92,7 @@ val system = BiddingSystem {
 
 system.writeHtml(File("build", "system.html"))
 ```
+
+With Gradle, you can use start both `./gradlew -t run` to
+automatically rerun the code upon modification to overwrite the HTML; and
+`npx live-server build/system.html` to serve it with auto-refresh.
