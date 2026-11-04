@@ -33,9 +33,7 @@ every attempt ended with the document collapsing under its complexity[^4].
 
 #### What's so hard about writing bidding systems?
 
-- Versioning hell. You change one agreement and suddenly
-  can't remember if you're playing the Tuesday version or
-  the one from last month's disaster.
+- Versioning hell. You changed an agreement. But did YOU (plural)? WHEN did you?
 
 - Messy similarity.
   Bidding sequences are often similar but not identical.
